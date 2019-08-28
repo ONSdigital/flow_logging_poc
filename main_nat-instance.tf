@@ -14,7 +14,7 @@ resource "aws_security_group" "natsg" {
     from_port   = 22
     protocol    = "tcp"
     to_port     = 22
-    cidr_blocks = [var.bastion_ingress_cidr]
+    cidr_blocks = [local.bastion_ingress_cidr]
   }
 
   ingress {
