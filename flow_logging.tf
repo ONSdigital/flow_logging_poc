@@ -8,17 +8,17 @@ resource "aws_flow_log" "results_flow_log" {
 }
 
 resource "aws_cloudwatch_log_group" "results_flow_log_group" {
-  name = "results_flow_log_group2"
+  name = "results_flow_log_group_${var.common_name}"
 }
 
 resource "aws_iam_role" "results_flow_log_iam_role" {
-  name = "results_flow_log_iam_role"
+  name = "results_flow_log_iam_role_${var.common_name}"
 
   assume_role_policy = file("${path.module}/flow_logging_tr_policy.json")
 }
 
 resource "aws_iam_role_policy" "cloudwatch_access_policy" {
-  name = "cloudwatch_access_policy"
+  name = "cloudwatch_access_policy_${var.common_name}"
   role = aws_iam_role.results_flow_log_iam_role.id
 
   policy = <<EOF
